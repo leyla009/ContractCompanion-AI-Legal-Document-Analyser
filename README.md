@@ -25,6 +25,7 @@ An intelligent, full-stack AI legal document analyzer built with Python, Streaml
 ```bash
 git clone [https://github.com/leyla009/ContractCompanion-AI-Legal-Document-Analyser.git](https://github.com/leyla009/ContractCompanion-AI-Legal-Document-Analyser.git)
 cd ContractCompanion-AI-Legal-Document-Analyser/apps/web-dashboard
+```
 
 ### 2. Configure the Virtual Environment
 

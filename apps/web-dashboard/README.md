@@ -2,6 +2,25 @@
 
 An intelligent, full-stack AI legal document analyzer built with Python, Streamlit, and the modern Google GenAI SDK. ContractCompanion parses complex legal contracts (PDF, DOCX, TXT), extracts key entities, and flags high-risk legal vulnerabilities instantly.
 
+___
+
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+    U[User / Web Browser] -->|HTTP / WebSockets| ST[Streamlit UI Dashboard]
+    
+    subgraph Python Monolith App Layer
+        ST -->|File Stream| DP[Document Processor Module]
+        DP -->|Text Layer Extraction| AE[AI Core Core Engine]
+    end
+
+    subgraph External Production Services
+        AE -->|Secure HTTPS / TLS 1.3| GAPI[Google GenAI API Production Endpoint]
+        GAPI -->|Inference Execution| M[gemini-2.5-flash Engine]
+    end
+
+
 ## 🚀 Features
 - **Multi-Format Document Parsing:** Custom text layer extraction for `.pdf`, `.docx`, and `.txt` agreements.
 - **AI-Driven Risk Auditing:** Leverages `gemini-2.5-flash` to structure comprehensive executive summaries, identify critical contract dates, and pinpoint missing protections.

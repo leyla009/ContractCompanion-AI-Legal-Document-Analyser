@@ -1,14 +1,15 @@
 import os
-import google.generativeai as genai
+from google import genai
 from dotenv import load_dotenv
 
-# Load key assets from the secret .env file
+# Load secret key assets from the environmental file
 load_dotenv()
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 def analyze_legal_document(document_text):
-    """Sends document string data to the LLM with structured analytical prompts."""
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    """Sends document string data to the modern GenAI Client with structured prompts."""
+    # The modern client automatically looks for the GEMINI_API_KEY environment variable.
+    # Since we set GOOGLE_API_KEY in your file, we pass it in explicitly to be safe:
+    client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
     
     prompt = f"""
     You are an expert legal assistant. Analyze the following legal document text and provide a structured review:
@@ -21,5 +22,8 @@ def analyze_legal_document(document_text):
     {document_text}
     """
     
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt,
+    )
     return response.text
